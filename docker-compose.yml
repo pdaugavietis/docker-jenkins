@@ -1,9 +1,9 @@
 version: '2'
 services:
     jenkins.docker:
-        image: shimmi/jenkins
+        image: rbcjenkins
         ports:
             - "8080:8080"
         volumes:
-            - ./jenkins_home:/var/jenkins_home
+            - ./jenkins_home:/data/jenkins_home
             - /var/run/docker.sock:/var/run/docker.sock

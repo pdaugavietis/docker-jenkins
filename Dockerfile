@@ -1,6 +1,9 @@
 FROM jenkins/jenkins
 
-MAINTAINER Jiří Šimeček <jirka@simecek.org>
+MAINTAINER Peter Daugavietis <peter.daugavietis@rbc.com>
+
+ENV http_proxy http://172.17.0.1:3128
+ENV https_proxy http://172.17.0.1:3128
 
 # Install Jenkins plugins
 RUN install-plugins.sh \
@@ -12,11 +15,21 @@ RUN install-plugins.sh \
     # Pipeline related
     workflow-aggregator \
     pipeline-stage-view \
+    delivery-pipeline-plugin \
+    embeddable-build-status \
+    workflow-multibranch \
+    pipeline-github \
+    jira-steps \
+    jenkins-flowdock-plugin \
 
     # VCS related
     git \
-    cloudbees-bitbucket-branch-source \
-    github-organization-folder
+    github \
+    github-organization-folder \
+    artifactory \
+
+    # Other plugins
+    jira
 
 # Install Docker binaries
 # see: https://docs.docker.com/engine/installation/binaries/
